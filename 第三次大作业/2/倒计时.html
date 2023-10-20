@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2><span>Countdown to NCEE</span> 2024</h2>
+        <div class="countdown">
+            <div id="day">NA</div>
+            <div id="hour">NA</div>
+            <div id="minute">NA</div>
+            <div id="second">NA</div>
+        </div>
+    </div>
+    <script>
+        //函数封装
+        function getCountTime() {
+            const now = +new Date() //得到当前时间戳
+            const last = +new Date('2024-6-7') //得到高考的时间戳
+            //console.log(now,last);
+            const count = (last - now) / 1000//得到剩余的时间戳
+            //console.log(count);
+            let d = parseInt(count / 60 / 60 / 24)  //计算天数
+            d = d < 10 ? '0' + d : d
+            let h = parseInt(count / 60 / 60 % 24) //计算小时
+            h = h < 10 ? '0' + h : h
+            let m = parseInt(count / 60 % 60) //计算分钟数
+            m = m < 10 ? '0' + m : m
+            let s = parseInt(count % 60) //计算秒数
+            s = s < 10 ? '0' + s : s
+            //console.log(d, h, m, s);
+            //把天时分秒写进对应的盒子里面
+            const day = document.querySelector('#day')
+            const hour = document.querySelector('#hour')
+            const minute = document.querySelector('#minute')
+            const second = document.querySelector('#second')
+            day.innerHTML = d
+            hour.innerHTML = h
+            minute.innerHTML = m
+            second.innerHTML = s
+        }
+        getCountTime() //先调用一次
+        //开启定时器
+        setInterval(getCountTime, 1000)
+    </script>
+</body>
+
+</html>
